@@ -16,7 +16,7 @@
         }
       };
       for (i = 0; i < 3; i++){
-        xhttp.open("GET", "html/latestValues.php?pin="+i, true);
+        xhttp.open("GET", "latestValues.php?pin="+i, true);
         xhttp.send();
       }
       return series;
