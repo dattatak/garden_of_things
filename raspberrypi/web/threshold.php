@@ -5,7 +5,7 @@ if (isset($_GET['control'])) {
     exit();
 }
 function pin($x) {
-	$db = new SQLite3('sensors.db');
+	$db = new SQLite3('/var/www/sensors.db');
 	$nameStmt = $db->prepare("SELECT RJ45Socket FROM moistureSensors WHERE pinNumber=:id");
 	$nameStmt->bindValue(':id',$x);
 	$name = $nameStmt->execute()->fetchArray();

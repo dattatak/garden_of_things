@@ -35,7 +35,7 @@ function moisturePin() {
 	
 	$result = array();
 	
-	$db = new SQLite3('sensors.db');
+	$db = new SQLite3('/var/www/sensors.db');
 	$stmt = $db->prepare("SELECT RJ45Socket, rollingAverage, threshold FROM moistureSensors");
     $return = $stmt->execute();
     while($item = $return->fetchArray()){
@@ -48,7 +48,7 @@ function tempPin($x) {
 	
 	$result = array();
 	
-	$db = new SQLite3('sensors.db');
+	$db = new SQLite3('/var/www/sensors.db');
 	$stmt = $db->prepare("SELECT rollingAverage FROM temperatureSensors WHERE sensorID=:id");
 	$stmt->bindValue(':id',$x);
 	array_push($result, $stmt->execute()->fetchArray()[0]);
