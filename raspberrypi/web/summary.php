@@ -80,7 +80,7 @@ function updateThreshold(val, port){
 			document.getElementById("thresholdPin"+port).innerHTML = this.responseText;
 		}
 	};
-	xhttp.open("GET", "updateThreshold.php?newValue="+val+"&pinNumber="+port, true);
+	xhttp.open("GET", "html/updateThreshold.php?newValue="+val+"&pinNumber="+port, true);
 	xhttp.send();
 }
 
