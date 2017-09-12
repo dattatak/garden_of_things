@@ -6,20 +6,18 @@
 <div id="myChart"></div>
 </body>
 <script>
-  function getData(series){
-      
+  function getData(pin){
+      var series = {};
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
           var newSeries = JSON.parse(xhttp.responseText);
-          series.push({"values": newSeries});
+          series = {"values": newSeries};
         }
       };
-      for (i = 0; i < 6; i++){
-        xhttp.open("GET", "latestValues.php?pin="+i, true);
-        xhttp.send();
-      }
-      
+      xhttp.open("GET", "latestValues.php?pin="+pin, true);
+      xhttp.send();
+      return series;
   }
 </script>
 
@@ -31,11 +29,9 @@
     id: 'myChart',
     data: {
       "type": 'line',
-      "series":data[0]
-      
+      "series":[getData(0),getData(4)]  
     }
   });
 </script>
-
 
 </html>
