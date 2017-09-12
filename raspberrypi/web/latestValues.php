@@ -12,7 +12,17 @@ function values($pin) {
     $nameStmt->bindValue(':id', $pin);
     $result = $nameStmt->execute();
     
-    
-    echo json_encode($result->fetchArray(), JSON_FORCE_OBJECT);
+    $nrows = 0;
+    $result->reset();
+    while ($result->fetchArray())
+        $nrows++;
+    $result->reset();
+    return $nrows;
+
+    for ($x = 0; $x <= $nrows; $x++){
+        $res = $result->fetchArray();
+        array_push($resultarr, $res[0]);
+    }
+    echo json_encode($resultarr, JSON_FORCE_OBJECT);
 }
 ?>
