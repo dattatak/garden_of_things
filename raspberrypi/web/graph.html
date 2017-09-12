@@ -13,11 +13,12 @@
         if(this.readyState == 4 && this.status == 200){
           var newSeries = JSON.parse(xhttp.responseText);
           series = {"values": newSeries};
+          return series;
         }
       };
       xhttp.open("GET", "latestValues.php?pin="+pin, true);
       xhttp.send();
-      return series;
+      
   }
 </script>
 
