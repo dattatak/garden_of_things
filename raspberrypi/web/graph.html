@@ -13,7 +13,8 @@
         if(this.readyState == 4 && this.status == 200){
           var newSeries = JSON.parse(xhttp.responseText);
           series = {"values": newSeries};
-          return series;
+          var currVals = zingchart.exec('myChart', 'getseriesvalues', {});
+          currVals.push(newSeries);
         }
       };
       xhttp.open("GET", "latestValues.php?pin="+pin, true);
@@ -23,13 +24,13 @@
 </script>
 
 <script>
-  var data1 = getData(0);
-  var data2 = getData(5);
+  getData(0);
+  getData(5);
   zingchart.render({
     id: 'myChart',
     data: {
       "type": 'line',
-      "series":[data1, data2]
+      "series":[]
     }
   });
 </script>
