@@ -17,7 +17,6 @@ function values($pin) {
     while ($result->fetchArray())
         $nrows++;
     $result->reset();
-    return $nrows;
 
     for ($x = 0; $x <= $nrows; $x++){
         $res = $result->fetchArray();
