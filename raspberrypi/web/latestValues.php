@@ -18,7 +18,7 @@ function values($pin) {
         $nrows++;
     $result->reset();
 
-    for ($x = 0; $x <= $nrows; $x++){
+    for ($x = 0; $x <= $nrows-1; $x++){
         $res = $result->fetchArray();
         array_push($resultarr, $res[0]);
     }
