@@ -6,31 +6,31 @@
 <div id="myChart"></div>
 </body>
 <script>
+  data = getData();
   zingchart.render({
     id: 'myChart',
     data: {
       type: 'line',
-      series: [{
-        values: [54,23,34,23,43],
-      }, {
-        values: [10,15,16,20,40]
-      }]
+      series: data;
     }
   });
 </script>
 
 <script>
-  var series = [];
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
-    if(this.readyState == 4 && this.status == 200){
-      var newSeries = JSON.parse(xhttp.responseText);
-      series.push(newSeries);
-    }
-  };
-  for (i = 0; i < 7; i++){
-    xhttp.open("GET", "html/latestValues.php?pin="+i, true);
-    xhttp.send();
+  function getData(){
+      var series = [];
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+          var newSeries = JSON.parse(xhttp.responseText);
+          series.push({"values": newSeries});
+        }
+      };
+      for (i = 0; i < 7; i++){
+        xhttp.open("GET", "html/latestValues.php?pin="+i, true);
+        xhttp.send();
+      }
+      return series;
   }
 </script>
 
