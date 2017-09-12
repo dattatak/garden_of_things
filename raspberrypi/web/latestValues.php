@@ -22,6 +22,6 @@ function values($pin) {
         $res = $result->fetchArray();
         array_push($resultarr, $res[0]);
     }
-    echo json_encode($resultarr, JSON_FORCE_OBJECT);
+    echo json_encode($resultarr);
 }
 ?>
