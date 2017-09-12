@@ -1,7 +1,7 @@
 <?php
 
-if (isset($_GET['type'])) {
-	echo values($_GET['type']);
+if (isset($_GET['pin'])) {
+	echo values($_GET['pin']);
 }
 function values($pin) {
 
@@ -9,7 +9,7 @@ function values($pin) {
 	
 	$resultarr = array();
     $nameStmt = $db->prepare("SELECT sample FROM moistureValues WHERE pinNumber =:id ORDER BY rowid DESC LIMIT 30");
-    $updateStmt->bindValue(':id', $pin);
+    $nameStmt->bindValue(':id', $pin);
     $result = $nameStmt->execute();
 
     for ($x = 0; $x <= $result->numColumns(); $x++){
