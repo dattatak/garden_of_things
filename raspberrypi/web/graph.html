@@ -22,11 +22,13 @@
 </script>
 
 <script>
+  data1 = getData(0);
+  data2 = getData(5);
   zingchart.render({
     id: 'myChart',
     data: {
       "type": 'line',
-      "series":[getData(0),getData(4)]  
+      "series":[data1, data2]
     }
   });
 </script>
