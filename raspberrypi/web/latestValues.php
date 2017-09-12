@@ -13,6 +13,6 @@ function values($pin) {
     $result = $nameStmt->execute();
     
     
-    echo json_encode($result->fetchAll(), JSON_FORCE_OBJECT);
+    echo json_encode($result->fetchArray(), JSON_FORCE_OBJECT);
 }
 ?>
