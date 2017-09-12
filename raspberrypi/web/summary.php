@@ -2,7 +2,7 @@
 
 function sensors($x) {
 
-	$db = new SQLite3('sensors.db');
+	$db = new SQLite3('/var/www/sensors.db');
 	
 	$resultarr = array();
 	if ($x == 'temp'){
