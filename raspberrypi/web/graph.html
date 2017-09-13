@@ -83,10 +83,7 @@ var myConfig = {
     }
   },
   scaleY: {
-    guide: {
-      visible: false
-    },
-    values: '0:1000:100'
+    values: '0:1000:50'
   },
   scaleX:{
     maxItems:360
@@ -136,7 +133,7 @@ function changeGraph(pin){
           display();
         }
     }
-    xhttp.open("GET", "latestValues.php?pin="+pin+"&t="+t, true);
+    xhttp.open("GET", "latestValues.php?pin="+pin-1+"&t="+t, true);
     xhttp.send();
      
 }
