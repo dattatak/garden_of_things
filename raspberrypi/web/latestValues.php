@@ -7,8 +7,10 @@ function values($pin, $lim) {
 
 	$db = new SQLite3('/var/www/sensors.db');
 	
-	$resultarr = array();
-    $nameStmt = $db->prepare("SELECT sample FROM moistureValues WHERE pinNumber =:id ORDER BY rowid DESC LIMIT :limit");
+	$sampleArray = array();
+    $timeArray = array();
+    
+    $nameStmt = $db->prepare("SELECT updateTime, sample FROM moistureValues WHERE pinNumber =:id ORDER BY rowid DESC LIMIT :limit");
     $nameStmt->bindValue(':id', $pin);
     $nameStmt->bindValue(':limit', $lim);
     $result = $nameStmt->execute();
@@ -21,8 +23,10 @@ function values($pin, $lim) {
 
     for ($x = 0; $x <= $nrows-1; $x++){
         $res = $result->fetchArray();
-        array_push($resultarr, $res[0]);
+        array_push($sampleArray, $res[1]);
+        array_push($timeArray, $res[0]);
     }
+    $resultarr = [$sampleArray, $timeArray];
     echo json_encode($resultarr);
 }
 ?>
