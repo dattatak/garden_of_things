@@ -104,7 +104,9 @@ window.feed = function(callback) {
       if (this.readyState == 4 && this.status == 200){
           var responseArray = []
           responseArray = JSON.parse(this.responseText);
+          console.log(responseArray);
           tick.plot0 = responseArray;
+          console.log(tick);
           callback(JSON.stringify(tick));
       }
   };
