@@ -1,12 +1,51 @@
+.btn-group button {
+    background-color: #4CAF50; /* Green background */
+    border: 1px solid green; /* Green border */
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    float: left; /* Float the buttons side by side */
+}
+
+.btn-group button:not(:last-child) {
+    border-right: none; /* Prevent double borders */
+}
+
+/* Clear floats (clearfix hack) */
+.btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+    background-color: #3e8e41;
+}
+
 <html>
 <head>
 </head>
 <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 <body>
 <div id="myChart"></div>
+
+<div class = "btn-group">
+    <button onclick="changeGraph(1)">1</button>
+    <button onclick="changeGraph(2)">2</button>
+    <button onclick="changeGraph(3)">3</button>
+    <button onclick="changeGraph(4)">4</button>
+    <button onclick="changeGraph(5)">5</button>
+    <button onclick="changeGraph(6)">6</button>
+    <button onclick="changeGraph(7)">7</button>
+    <button onclick="changeGraph(8)">8</button>
+</div>
 </body>
 
 <script>
+
+
+
 var myConfig = {
   //chart styling
   type: 'line',
@@ -14,12 +53,6 @@ var myConfig = {
     fontFamily: 'Roboto',
   },
   backgroundColor: '#fff',
-  title: {
-    backgroundColor: '#1565C0',
-    text: 'Real-Time Line Chart',
-    color: '#fff',
-    height: '30x',
-  },
   plotarea: {
     marginTop: '80px'
   },
@@ -54,7 +87,7 @@ var myConfig = {
     values: '0:1000:100'
   },
   scaleX:{
-    maxItems:360
+    values: '0:60:360'
   },
   tooltip: {
     visible: false
@@ -88,6 +121,21 @@ xhttp.onreadystatechange = function(){
 xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
 xhttp.send();
  
+function changeGraph(pin){
+    var t = 360;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200){
+          var responseArray = []
+          responseArray = JSON.parse(this.responseText);
+          myConfig.series[0].values = responseArray;
+          display();
+        }
+    }
+    xhttp.open("GET", "latestValues.php?pin="+pin+"&t="+t, true);
+    xhttp.send();
+     
+}
 function display() {
     zingchart.render({
       id: 'myChart',
@@ -96,27 +144,6 @@ function display() {
       width: '100%'
     });
 }
-
-//real-time feed random math function
-window.feed = function(callback) {
-  var tick = {};
-  var t = 360;
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function(){
-      if (this.readyState == 4 && this.status == 200){
-          var responseArray = []
-          responseArray = JSON.parse(this.responseText);
-          for(var i = t; i > 1; i--){
-            tick.plot0 = responseArray[i];
-            callback(JSON.stringify(tick));
-          }
-      }
-  };
-  xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
-  xhttp.send();
-};
-
-
  
 function clearGraph() {
   zingchart.exec('myChart', 'clearfeed')
