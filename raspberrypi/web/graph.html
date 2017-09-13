@@ -82,9 +82,8 @@ xhttp.onreadystatechange = function(){
       var responseArray = []
       responseArray = JSON.parse(this.responseText);
       myConfig.series[0].values = responseArray;
-      }
-  }
-};
+    }
+}
 xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
 xhttp.send();
  
