@@ -59,15 +59,6 @@ var myConfig = {
   tooltip: {
     visible: false
   },
-  //real-time feed
-  refresh: {
-    type: 'feed',
-    transport: 'js',
-    url: 'feed()',
-    interval: 5000,
-    maxTicks:360,
-    adjustScale:true
-  },
   plot: {
     shadow: 1,
     shadowColor: '#eee',
@@ -81,19 +72,30 @@ var myConfig = {
     values: [],
     lineColor: '#2196F3',
     text: 'Blue Line'
-  },{
-    values: [],
-    lineColor: '#ff9800',
-    text: 'Orange Line'
   }]
 };
+
+var t = 360;
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function(){
+  if (this.readyState == 4 && this.status == 200){
+      var responseArray = []
+      responseArray = JSON.parse(this.responseText);
+      myConfig.series[0].values = responseArray;
+      }
+  }
+};
+xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
+xhttp.send();
  
-zingchart.render({
-  id: 'myChart',
-  data: myConfig,
-  height: '100%',
-  width: '100%'
-});
+function display() {
+    zingchart.render({
+      id: 'myChart',
+      data: myConfig,
+      height: '100%',
+      width: '100%'
+    });
+}
 
 //real-time feed random math function
 window.feed = function(callback) {
