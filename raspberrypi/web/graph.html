@@ -30,7 +30,7 @@
 </head>
 <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
 <body>
-<div id="myChart"></div>
+<div id="myChart" style="height:80%"></div>
 
 <div class = "btn-group">
     <button onclick="changeGraph(1)">1</button>
@@ -57,7 +57,6 @@ var myConfig = {
   backgroundColor: '#fff',
   plotarea: {
     marginTop: '80px',
-    height: "80%"
   },
   crosshairX: {
     lineWidth: 4,
@@ -117,7 +116,7 @@ xhttp.onreadystatechange = function(){
   if (this.readyState == 4 && this.status == 200){
       var responseArray = []
       responseArray = JSON.parse(this.responseText);
-      myConfig.series[0].values = responseArray;
+      myConfig.series[0].values = responseArray.reverse();
       display();
     }
 }
@@ -131,7 +130,7 @@ function changeGraph(pin){
       if (this.readyState == 4 && this.status == 200){
           var responseArray = []
           responseArray = JSON.parse(this.responseText);
-          myConfig.series[0].values = responseArray;
+          myConfig.series[0].values = responseArray.reverse();
           display();
         }
     }
