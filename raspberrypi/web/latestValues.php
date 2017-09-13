@@ -1,7 +1,7 @@
 <?php
 
 if (isset($_GET['pin'])) {
-	echo values($_GET['pin']);
+	echo values($_GET['pin'], $_GET['t']);
 }
 function values($pin, $lim) {
 
