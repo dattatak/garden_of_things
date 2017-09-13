@@ -17,7 +17,8 @@
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-          return xhttp.responseText;
+            series.plot0 = JSON.parse(xhttp.responseText);
+          return JSON.stringify(series);
         }
       };
       xhttp.open("GET", "latestValues.php?pin="+pin, true);
