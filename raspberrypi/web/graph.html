@@ -17,7 +17,7 @@
       var xhttp = new XMLHttpRequest();
       xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-          return JSON.parse(xhttp.responseText);
+          return xhttp.responseText;
         }
       };
       xhttp.open("GET", "latestValues.php?pin="+pin, true);
@@ -32,7 +32,7 @@
     "refresh":{
         "type": "feed",
         "transport" : "js",
-        "url" : "getData()",
+        "url" : "requestData(5)",
         "interval" : 5
     }
   });
