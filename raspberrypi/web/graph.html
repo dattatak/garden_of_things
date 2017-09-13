@@ -96,17 +96,19 @@ zingchart.render({
 });
 
 //real-time feed random math function
-window.feed = function(t = 0, callback) {
+window.feed = function(t = 1, callback) {
   var tick = {};
   
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
-          tick.plot0 = JSON.parse(this.responseText)[0];
-          callback(JSON.stringify(tick));
+          for(var i = t; i > 0; i++){
+            tick.plot0 = JSON.parse(this.responseText)[0];
+            callback(JSON.stringify(tick));
+          }
       }
   };
-  xhttp.open("GET", "latestValues.php?pin=5", true);
+  xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
   xhttp.send();
 
 };
