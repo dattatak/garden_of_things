@@ -106,8 +106,8 @@ window.feed = function(callback) {
           responseArray = JSON.parse(this.responseText);
           for(var i = t; i > 0; i--){
             tick.plot0 = responseArray[i];
-            callback(JSON.stringify(tick));
           }
+          callback(JSON.stringify(tick));
       }
   };
   xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
