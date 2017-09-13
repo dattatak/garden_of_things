@@ -80,8 +80,9 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
   if (this.readyState == 4 && this.status == 200){
       var responseArray = []
-      responseArray = JSON.parse(this.responseText);
+      responseArray = JS ON.parse(this.responseText);
       myConfig.series[0].values = responseArray;
+      display();
     }
 }
 xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
