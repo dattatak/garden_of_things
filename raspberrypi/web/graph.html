@@ -96,7 +96,7 @@ zingchart.render({
 });
 
 //real-time feed random math function
-window.feed = function(t = 1, callback) {
+window.feed = function(callback, t = 360,) {
   var tick = {};
   
   var xhttp = new XMLHttpRequest();
@@ -110,8 +110,8 @@ window.feed = function(t = 1, callback) {
   };
   xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
   xhttp.send();
-
 };
+
 
  
 function clearGraph() {
