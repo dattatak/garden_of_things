@@ -61,7 +61,7 @@ var myConfig = {
   },
   //real-time feed
   refresh: {
-    type: 'full',
+    type: 'feed',
     transport: 'js',
     url: 'feed()',
     interval: 5000,
@@ -104,10 +104,10 @@ window.feed = function(callback) {
       if (this.readyState == 4 && this.status == 200){
           var responseArray = []
           responseArray = JSON.parse(this.responseText);
-          console.log(responseArray);
-          tick.plot0 = responseArray;
-          console.log(tick);
-          callback(JSON.stringify(tick));
+          for(var i = t; i > 1; i--){
+            tick.plot0 = responseArray[i];
+            callback(JSON.stringify(tick));
+          }
       }
   };
   xhttp.open("GET", "latestValues.php?pin=5&t="+t, true);
