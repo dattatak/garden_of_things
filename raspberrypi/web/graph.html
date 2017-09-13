@@ -97,7 +97,7 @@ window.feed = function(callback) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
-          tick.plot0 = JSON.parseInt(this.responseText);
+          tick.plot0 = JSON.parse(this.responseText)[0];
           callback(JSON.stringify(tick));
       }
   };
