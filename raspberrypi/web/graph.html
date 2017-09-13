@@ -115,7 +115,6 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
   if (this.readyState == 4 && this.status == 200){
       var responseArray = []
-      var timeArray = []
       responseArray = JSON.parse(this.responseText);
       myConfig.series[0].values = responseArray[0].reverse();
       myConfig.scaleX.labels = responseArray[1].reverse();
@@ -131,11 +130,9 @@ function changeGraph(pin){
     xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
           var responseArray = []
-          var timeArray = []
-          responseArray = JSON.parse(this.responseText[0]);
-          timeArray = JSON.parse(this.responseText[0]);
-          myConfig.series[0].values = responseArray.reverse();
-          myConfig.scaleX.labels = timeArray.reverse();
+          responseArray = JSON.parse(this.responseText);
+          myConfig.series[0].values = responseArray[0].reverse();
+          myConfig.scaleX.labels = responseArray[1].reverse();
           display();
         }
     }
