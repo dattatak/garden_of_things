@@ -96,9 +96,9 @@ zingchart.render({
 });
 
 //real-time feed random math function
-window.feed = function(callback, t = 360,) {
+window.feed = function(callback) {
   var tick = {};
-  
+  var t = 360;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200){
