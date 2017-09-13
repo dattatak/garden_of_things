@@ -8,7 +8,7 @@ function values($pin) {
 	$db = new SQLite3('/var/www/sensors.db');
 	
 	$resultarr = array();
-    $nameStmt = $db->prepare("SELECT sample FROM moistureValues WHERE pinNumber =:id ORDER BY rowid DESC LIMIT 30");
+    $nameStmt = $db->prepare("SELECT sample FROM moistureValues WHERE pinNumber =:id ORDER BY rowid DESC LIMIT 1");
     $nameStmt->bindValue(':id', $pin);
     $result = $nameStmt->execute();
     

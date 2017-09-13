@@ -93,8 +93,7 @@ zingchart.render({
 //real-time feed random math function
 window.feed = function(callback) {
   var tick = {};
-  tick.plot0 = parseInt(10 + 90 * Math.random(), 10);
-  tick.plot1 = parseInt(10 + 90 * Math.random(), 10);
+  tick.plot0 = getLatestValue();
   callback(JSON.stringify(tick));
 };
 //clear start stop click events
@@ -113,6 +112,18 @@ function startGraph() {
 function stopGraph() {
   zingchart.exec('myChart', 'stopfeed');
 }
+
+function getLatestValue(){
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200){
+          return int(this.responseText);
+      }
+  };
+  xhttp.open("GET", "html/latestValues.php?pin=5", true);
+  xhttp.send();
+}
+
 </script>
 
 </html>
