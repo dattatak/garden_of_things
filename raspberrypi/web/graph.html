@@ -33,14 +33,14 @@
 <div id="myChart" style="height:80%"></div>
 
 <div class = "btn-group">
-    <button onclick="changeGraph(1)">1</button>
-    <button onclick="changeGraph(2)">2</button>
-    <button onclick="changeGraph(3)">3</button>
-    <button onclick="changeGraph(4)">4</button>
-    <button onclick="changeGraph(5)">5</button>
-    <button onclick="changeGraph(6)">6</button>
-    <button onclick="changeGraph(7)">7</button>
-    <button onclick="changeGraph(8)">8</button>
+    <button onclick="changeGraph(0)">1</button>
+    <button onclick="changeGraph(1)">2</button>
+    <button onclick="changeGraph(2)">3</button>
+    <button onclick="changeGraph(3)">4</button>
+    <button onclick="changeGraph(4)">5</button>
+    <button onclick="changeGraph(5)">6</button>
+    <button onclick="changeGraph(5)">7</button>
+    <button onclick="changeGraph(7)">8</button>
 </div>
 </body>
 
@@ -133,7 +133,7 @@ function changeGraph(pin){
           display();
         }
     }
-    xhttp.open("GET", "latestValues.php?pin="+pin-1+"&t="+t, true);
+    xhttp.open("GET", "latestValues.php?pin="+pin+"&t="+t, true);
     xhttp.send();
      
 }
